@@ -24,6 +24,9 @@
   let
     inherit (self) outputs;
     inherit (nixpkgs) lib;
+    forAllSystems = nixpkgs.lib.genAtters [
+      "x86_64-linux"
+    ];
     configLib = import ./lib {inherit lib; };
     configVars = import ./vars { inherit inputs lib; };
     specialArgs = { inherit inputs outputs configLib nixpkgs; };
@@ -31,7 +34,20 @@
   {
     # Costum modules to enable special functionality
     nixosModules = import ./modules/nixos;
+
+    overlays = import ./overlays { inherit inputs outputs; };
     
+    # formatter
+    formatter = forAllSystems
+      (system:
+        nixpkgs.legacyPackages.${system}.nixpkgs-fmt
+      );
+    
+    devShells = forAllSystems
+      (system:
+        let pkgs = nixpkgs.legacyPackages.${system};
+        in import ./pkgs { inherit pkgs; } 
+      );
 
     nixosConfigurations = {
       xps = nixpkgs.lib.nixosSystem {
