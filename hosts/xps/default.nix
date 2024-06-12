@@ -10,6 +10,9 @@
   ]
   ++ (map configLib.relativeToRoot [
     "hosts/common/core"
+
+    # Optional
+    "hosts/common/optional/hyprland.nix"
     
     # Users
     "hosts/common/users/fk"
