@@ -17,7 +17,7 @@
       TERM = "alacritty";
       TERMINAL = "alacritty";
       EDITOR = "nvim";
-    }
+    };
   };
 
   home.packages = builtins.attrValues {
@@ -33,7 +33,7 @@
     tree
     unzip
     zip
-    wget
+    wget;
   };
 
   nixpkgs = {

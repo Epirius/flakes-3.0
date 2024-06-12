@@ -29,11 +29,12 @@
     ];
     configLib = import ./lib {inherit lib; };
     configVars = import ./vars { inherit inputs lib; };
-    specialArgs = { inherit inputs outputs configLib nixpkgs; };
+    specialArgs = { inherit inputs outputs configLib configVars nixpkgs; };
   in
   {
     # Costum modules to enable special functionality
     nixosModules = import ./modules/nixos;
+    homeManagerModules = import ./modules/home-manager;
 
     overlays = import ./overlays { inherit inputs outputs; };
     
