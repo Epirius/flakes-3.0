@@ -2,22 +2,31 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, configLib, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ]
+  ++ (map configLib.relativeToRoot [
+    "hosts/common/core"
+    
+    # Users
+    "hosts/common/users/fk"
+  ]);
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_8; # todo change to latest
   
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+
+  
+  
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -25,12 +34,6 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-
-  # Set your time zone.
-  time.timeZone = "Europe/Oslo";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "nb_NO.UTF-8";
@@ -44,24 +47,34 @@
     LC_TIME = "nb_NO.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
+  services = {
+    # Enable the X11 windowing system.
+    # You can disable this if you're only using the Wayland session.
+    xserver.enable = true;
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+    # Enable the KDE Plasma Desktop Environment.
+    displayManager.sddm.enable = true;
+    desktopManager.plasma6.enable = true;
 
-  # Configure keymap in X11
-  services.xserver = {
-    xkb = {
-      layout = "us";
-      variant = "";
+    # Configure keymap in X11
+    xserver = {
+      xkb = {
+        layout = "us";
+        variant = "";
+      };
+    };
+
+    # Enable CUPS to print documents.
+    printing.enable = true;
+
+    libinput = {
+      enable = true;
+      touchpad.naturalScrolling = true;
     };
   };
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
+
+
 
   # Enable bluetooth
   hardware.bluetooth.enable = true;
@@ -82,25 +95,9 @@
     #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.fk = {
-    isNormalUser = true;
-    description = "Felix";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      kdePackages.kate
-    #  thunderbird
-    ];
-  };
-
-  # Install firefox.
   programs.firefox.enable = true;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

@@ -85,17 +85,6 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.fk = {
-    isNormalUser = true;
-    description = "Felix";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      kdePackages.kate
-    #  thunderbird
-    ];
-  };
-
   # Install firefox.
   programs.firefox.enable = true;
 
@@ -109,7 +98,6 @@
   #  wget
     neovim
     vscode
-    git
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

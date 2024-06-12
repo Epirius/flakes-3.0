@@ -20,7 +20,18 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, ... }@inputs: 
+  let
+    inherit (self) outputs;
+    inherit (nixpkgs) lib;
+    configLib = import ./lib {inherit lib; };
+    specialArgs = { inherit inputs outputs configLib nixpkgs; };
+  in
+  {
+    # Costum modules to enable special functionality
+    nixosModules = import ./modules/nixos;
+    
+
     nixosConfigurations = {
       # default = nixpkgs.lib.nixosSystem {
       #   specialArgs = {inherit inputs;};
@@ -31,9 +42,13 @@
       # };
       
       xps = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
+        # specialArgs = {inherit inputs;};
+        inherit specialArgs;
         modules = [
-          ./hosts/xps/configuration.nix
+          home-manager.nixosModules.home-manager {
+            home-manager.extraSpecialArgs = specialArgs;
+          }
+          ./hosts/xps
           # inputs.home-manager.nixosModules.default
         ];
       };
