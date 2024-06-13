@@ -14,8 +14,8 @@
     ];
     sessionVariables = {
       SHELL = "zsh";
-      TERM = "alacritty";
-      TERMINAL = "alacritty";
+      TERM = "kitty";
+      TERMINAL = "kitty";
       EDITOR = "nvim";
     };
   };
@@ -46,8 +46,15 @@
   };
 
   programs = {
-    home-manager.enable = true;
     gh.enable = true;
+    home-manager.enable = true;
+    kitty = {
+      enable = true;
+      settings = {
+        scrollback_lines = 5000;
+        enable_audio_bell = false;
+      };
+    };
     ssh = {
       enable = true;
       addKeysToAgent = "yes";
