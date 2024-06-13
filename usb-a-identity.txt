@@ -1,0 +1,7 @@
+#       Serial: 18194420, Slot: 1
+#         Name: Nixos age vault
+#      Created: Sun, 19 Nov 2023 14:22:54 +0000
+#   PIN policy: Never  (A PIN is NOT required to decrypt)
+# Touch policy: Always (A physical touch is required for every decryption)
+#    Recipient: age1yubikey1q0hz9sp9cwd8qtuas0q02d55hu90drrvdrse4xrgzhjkxc7vglsmsaftj9f
+AGE-PLUGIN-YUBIKEY-17J032QVZNXZ0XFQESTK7T

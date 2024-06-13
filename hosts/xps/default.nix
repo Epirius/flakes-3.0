@@ -13,6 +13,7 @@
 
     # Optional
     "hosts/common/optional/hyprland.nix"
+    "hosts/common/optional/services/openssh.nix"
     
     # Users
     "hosts/common/users/fk"

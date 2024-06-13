@@ -23,5 +23,12 @@
       options = "--delete-older-than 14d";
     };
   };
+
+  # Package for using yubikeys for my age private key
+  environment.systemPackages = [
+    pkgs.age-plugin-yubikey
+    pkgs.age
+  ];
+  services.pcscd.enable = true;
   
 }

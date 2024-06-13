@@ -47,6 +47,8 @@
 
   programs = {
     home-manager.enable = true;
+    gh.enable = true;
+    ssh.enable = true;
   };
 
   # Nicely reload system units when changing configs
