@@ -48,7 +48,20 @@
   programs = {
     home-manager.enable = true;
     gh.enable = true;
-    ssh.enable = true;
+    ssh = {
+      enable = true;
+      addKeysToAgent = "yes";
+
+      matchBlocks = {
+        "git" = {
+          host = "github.com";
+          user = "git";
+          identityFile = [
+            "~/.ssh/id_ed25519"
+          ];
+        };
+      };
+    };
   };
 
   # Nicely reload system units when changing configs
