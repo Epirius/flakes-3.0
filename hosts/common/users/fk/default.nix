@@ -35,9 +35,5 @@ in
       git.enable = true;
       zsh.enable = true;
     };
-    environment.systemPackages = [
-      pkgs.just
-      pkgs.rsync
-    ];
   };
 }
