@@ -25,6 +25,8 @@
       url = "github:mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    stylix.url = "github:danth/stylix";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs: 
@@ -44,6 +46,7 @@
     homeManagerModules = import ./modules/home-manager;
 
     overlays = import ./overlays { inherit inputs outputs; };
+
     
     # formatter
     formatter = forAllSystems
@@ -56,7 +59,7 @@
         let pkgs = nixpkgs.legacyPackages.${system};
         in import ./pkgs { inherit pkgs; } 
       );
-
+    
     nixosConfigurations = {
       xps = nixpkgs.lib.nixosSystem {
         # specialArgs = {inherit inputs;};
@@ -64,10 +67,12 @@
         modules = [
           home-manager.nixosModules.home-manager {
             home-manager.extraSpecialArgs = specialArgs;
+            home-manager.backupFileExtension = "hm-backup";
+
           }
           ./hosts/xps
           # inputs.home-manager.nixosModules.default
-        inputs.stylix.nixosModules.stylix
+          inputs.stylix.nixosModules.stylix
         ];
       };
     };

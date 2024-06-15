@@ -14,6 +14,7 @@
     # Optional
     "hosts/common/optional/hyprland.nix"
     "hosts/common/optional/services/openssh.nix"
+    "hosts/common/optional/styling.nix"
     
     # Users
     "hosts/common/users/fk"
