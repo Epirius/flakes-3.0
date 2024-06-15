@@ -13,10 +13,12 @@ in
 
 
     #################### Required Configs ####################
+    ./common/core/zsh
     ./common/core #required
 
     #################### Host-specific Optional Configs ####################
     ./common/optional/hyprland.nix
+
 
   ];
 

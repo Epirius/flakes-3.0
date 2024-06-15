@@ -13,9 +13,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    };
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     
     nixvim = {
       #url = "github:nix-community/nixvim/nixos-23.11";
@@ -69,6 +67,7 @@
           }
           ./hosts/xps
           # inputs.home-manager.nixosModules.default
+        inputs.stylix.nixosModules.stylix
         ];
       };
     };
