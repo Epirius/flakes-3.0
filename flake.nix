@@ -26,7 +26,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # stylix.url = "github:danth/stylix";
+    stylix.url = "github:danth/stylix";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs: 
@@ -38,7 +38,12 @@
     ];
     configLib = import ./lib {inherit lib; };
     configVars = import ./vars { inherit inputs lib; };
-    specialArgs = { inherit inputs outputs configLib configVars nixpkgs; };
+    
+    background-image = builtins.fetchurl {
+        url = "https://github.com/Epirius/wallpapers/blob/main/wallpapers/murky_peaks.jpg?raw=true";
+        sha256 = "Rnqa1k8onl2b+xyWJ0Yp/yWzQKFuhr8aSydHYeqJi3Q=";
+    };
+    specialArgs = { inherit inputs outputs configLib configVars nixpkgs background-image; };
   in
   {
     # Costum modules to enable special functionality
@@ -72,7 +77,7 @@
           }
           ./hosts/xps
           # inputs.home-manager.nixosModules.default
-          # inputs.stylix.nixosModules.stylix
+          inputs.stylix.nixosModules.stylix
         ];
       };
     };

@@ -44,7 +44,6 @@
     rsync
     bat
     neofetch
-    neovim
     vscode
     firefox
     ripgrep

@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, configLib, pkgs, ... }:
+{ config, configLib, configVars, pkgs, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
@@ -14,7 +14,7 @@
     # Optional
     "hosts/common/optional/hyprland.nix"
     "hosts/common/optional/services/openssh.nix"
-    # "hosts/common/optional/styling.nix"
+    "hosts/common/optional/styling.nix"
     
     # Users
     "hosts/common/users/fk"
@@ -40,19 +40,14 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   services = {
-    # Enable the X11 windowing system.
-    # You can disable this if you're only using the Wayland session.
-    xserver.enable = true;
-
-    # Enable the KDE Plasma Desktop Environment.
-    displayManager.sddm.wayland.enable = true;
-    # desktopManager.plasma6.enable = true;
-
-    # Configure keymap in X11
-    xserver = {
-      xkb = {
-        layout = "us";
-        variant = "";
+    # Display manager
+    greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd hyprland";
+          user = "${configVars.username}";
+        };
       };
     };
 

@@ -1,4 +1,4 @@
-{pkgs, lib, ...}:
+{pkgs, lib, background-image, ...}:
 let 
   inherit (pkgs) polkit_gnome callPackage;
   super = "SUPER";
@@ -7,7 +7,18 @@ in
 {
   home.packages = with pkgs; [
     waybar
+    hyprpaper
   ];
+
+  services.hyprpaper = {
+    enable = true;
+    settings = {
+      preload = [ "${background-image}" ];
+      wallpaper = [ ",${background-image}" ];
+      splash = false;
+    };
+  };
+
 
   wayland.windowManager.hyprland = {
     enable = true;
