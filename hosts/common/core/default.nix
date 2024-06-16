@@ -40,6 +40,7 @@
     age-plugin-yubikey
     age
 
+    blueman
     just
     rsync
     bat
@@ -49,6 +50,8 @@
     ripgrep
     tldr
     wofi
+    wireplumber # dont know if i need this, i added it when i ment to add pavucontrol
+    pavucontrol
   ];
 
   services = {

@@ -10,13 +10,16 @@ in
     hyprpaper
   ];
 
-  services.hyprpaper = {
-    enable = true;
-    settings = {
-      preload = [ "${background-image}" ];
-      wallpaper = [ ",${background-image}" ];
-      splash = false;
+  services = {
+    hyprpaper = {
+      enable = true;
+      settings = {
+        preload = [ "${background-image}" ];
+        wallpaper = [ ",${background-image}" ];
+        splash = false;
+      };
     };
+    dunst.enable = true;
   };
 
 
