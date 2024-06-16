@@ -23,6 +23,7 @@
     LC_TIME = "nb_NO.UTF-8";
   };
 
+  security.polkit.enable = true;
 
   nix = {
     settings.experimental-features = ["nix-command" "flakes"];
@@ -48,8 +49,11 @@
     firefox
     ripgrep
     tldr
+    wofi
   ];
 
-  services.pcscd.enable = true;
+  services = {
+    pcscd.enable = true;
+  };
   
 }

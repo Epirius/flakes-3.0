@@ -11,6 +11,10 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
+    systemd = {
+      enable = true;
+      variables = ["--all"];
+    };
 
     settings = {
       monitor = [
@@ -80,6 +84,11 @@ in
         ];
 
       };
+
+      exec-once = [
+        "nm-applet --indicator & disown"
+      ];
+      
 
       dwindle = {
         pseudotile = true;

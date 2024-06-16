@@ -3,7 +3,6 @@
   imports = (configLib.scanPaths ./.)
     ++ (builtins.attrValues outputs.homeManagerModules);
   
-  services.ssh-agent.enable = true;
 
   home = {
     username = lib.mkDefault "fk";
@@ -53,6 +52,7 @@
       settings = {
         scrollback_lines = 5000;
         enable_audio_bell = false;
+        background_opacity = "0.8";
       };
     };
     ssh = {
@@ -69,6 +69,11 @@
         };
       };
     };
+  };
+
+  services = {
+    gnome-keyring.enable = true;
+    ssh-agent.enable = true;
   };
 
   # Nicely reload system units when changing configs

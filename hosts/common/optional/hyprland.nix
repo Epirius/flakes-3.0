@@ -7,6 +7,7 @@
     xwayland.enable = true;
   };
 
+
   environment = {
     sessionVariables = {
       # If your cursor becomes invisible
@@ -15,6 +16,9 @@
       # Hint electron apps to use wayland
       # NIXOS_OZONE_WL = "1";
     };
+    systemPackages = [
+      pkgs.networkmanagerapplet
+    ];
     # systemPackages = [
     #   pkgs.waybar
     #   (pkgs.waybar.overrideAttrs (oldAttrs: {
