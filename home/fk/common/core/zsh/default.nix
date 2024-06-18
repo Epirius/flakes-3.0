@@ -67,6 +67,11 @@
     fi
     '';
 
+    initExtra = ''
+    # Add ctrl backspace to delete word
+    bindkey '^H' backward-kill-word
+    '';
+
 
   };
 }
