@@ -6,7 +6,6 @@ let
 in
 {
   home.packages = with pkgs; [
-    waybar
     hyprpaper
   ];
 
@@ -21,6 +20,8 @@ in
     };
     dunst.enable = true;
   };
+
+  
 
 
   wayland.windowManager.hyprland = {

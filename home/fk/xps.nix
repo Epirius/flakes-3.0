@@ -19,6 +19,7 @@ in
 
     #################### Host-specific Optional Configs ####################
     ./common/optional/hyprland.nix
+    ./common/optional/waybar.nix
     ./common/optional/styling.nix
 
 
