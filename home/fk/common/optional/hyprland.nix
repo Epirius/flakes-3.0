@@ -3,6 +3,7 @@ let
   inherit (pkgs) polkit_gnome callPackage;
   super = "SUPER";
   mainMod = "SUPER";
+  laptopMonitor = "desc:Sharp Corporation 0x1547";
 in
 {
   home.packages = with pkgs; [
@@ -18,7 +19,69 @@ in
         splash = false;
       };
     };
+
     dunst.enable = true;
+
+    hypridle = {
+      enable = true;
+      settings = {
+        general = {
+          after_sleep_cmd = "hyprctl dispatch dpms on";
+          ignore_dbus_inhibit = false;
+          lock_cmd = "hyprlock";
+        };
+
+        listener = [
+          {
+            timeout = 300;
+            on-timeout = "hyprlock";
+          }
+          {
+            timeout = 310;
+            on-timeout = "hyprctl dispatch dpms off";
+            on-resume = "hyprctl dispatch dpms on";
+          }
+        ];
+      };
+    };
+  };
+
+  programs = {
+    hyprlock = {
+      enable = true;
+      settings = {
+        general = {
+          disable_loading_bar = true;
+          grace = 2;
+          hide_cursor = true;
+          no_fade_in = false;
+        };
+
+        background = [
+          {
+            path = "screenshot";
+            blur_passes = 3;
+            blur_size = 8;
+          }
+        ];
+
+        input-field = [
+          {
+            size = "200, 50";
+            position = "0, -80";
+            monitor = "";
+            dots_center = true;
+            fade_on_empty = false;
+            font_color = "rgb(202, 211, 245)";
+            inner_color = "rgb(91, 96, 120)";
+            outer_color = "rgb(24, 25, 38)";
+            outline_thickness = 5;
+            placeholder_text = "Password...";
+            shadow_passes = 2;
+          }
+        ];
+      };
+    };
   };
 
   
@@ -34,13 +97,13 @@ in
     settings = {
       monitor = [
         # Main xps
-        "desc:Sharp Corporation 0x1547,1920x1200@60,0x0,1"
+        "${laptopMonitor},1920x1200@60,0x0,1"
         # Home BENQ
         "desc:BNQ BenQ XL2420T 85C00146SL0,3840x2160,0x-1080,1"
         # LG Home
         "desc:LG Electronics 27GL850 005NTSUF1078,preferred,0x-1440,1.5"
         # Wildcard
-        ",preferred,auto,1,mirror, desc:Sharp Corporation 0x1547"
+        ",preferred,auto,1,mirror, ${laptopMonitor}"
       ];
 
       input = {
@@ -192,7 +255,7 @@ in
         "${mainMod}, P, pseudo," # dwindle
         "${mainMod}, J, togglesplit," # dwindle
         "${mainMod} SHIFT, L, exec, hyprctl switchxkblayout at-translated-set-2-keyboard next"
-        "${mainMod}, PERIOD, exec, swaylock --color 000000"
+        "${mainMod}, PERIOD, exec, hyprlock"
 
         # Multimedia
         ", XF86AudioPlay, exec, playerctl play-pause"
@@ -263,7 +326,13 @@ in
         # Multimedia
         ", XF86AudioMute, exec, wpctl set-mute @DEFAULT_SINK@ toggle"
         ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_SOURCE@ toggle"
+
+        # Laptop lid close
+        # "switch:Lid Switch,exec,hypridle"
+        # "switch:on:Lid Switch,exec,hyprctl keyword monitor \"${laptopMonitor}, disable\""
+        # "switch:off:Lid Switch,exec,hyprctl keyword monitor \"${laptopMonitor}, 1920x1200@60,0x0,1\""
       ];
+
 
       binde = [
         # Multimedia
