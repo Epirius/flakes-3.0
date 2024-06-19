@@ -70,6 +70,21 @@
     initExtra = ''
     # Add ctrl backspace to delete word
     bindkey '^H' backward-kill-word
+
+    # Add this function to define the custom segment
+    function prompt_nix_shell() {
+      if [[ -n $IN_NIX_SHELL ]]; then
+        local text="NIX SHELL"
+        if [[ -n $NIX_SHELL_TEXT ]]; then
+          text="$NIX_SHELL_TEXT"
+        fi
+        p10k segment -t "$text"
+      fi
+    }
+
+    # Add the custom segment to your prompt
+    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir vcs nix_shell)
+
     '';
 
 
