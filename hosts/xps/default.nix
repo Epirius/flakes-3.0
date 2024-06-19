@@ -66,6 +66,21 @@
   # Enable bluetooth
   hardware.bluetooth.enable = true;
 
+  # Enable opengl
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+
+  services.xserver.videoDrivers = ["intel"];
+  services.xserver.deviceSection = ''
+    Option "DRI" "2"
+    Option "TearFree" "true"
+  '';
+
+  
+
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -81,6 +96,10 @@
     # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
+
+  environment.systemPackages = with pkgs; [
+    v4l-utils
+  ];
 
   
 
