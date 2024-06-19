@@ -256,7 +256,7 @@ in
 
       bindr = [
         # Toggle waybar
-        "${mainMod}, Q, exec, ~/.dotfiles/scripts/reload-waybar.sh || killall waybar"
+        "${super}, Q, exec, pkill waybar || waybar"
       ];
 
       bindl = [
