@@ -21,6 +21,7 @@ in
     ./common/optional/styling.nix
     ./common/optional/firefox.nix
     ./common/optional/chromium.nix
+    ./common/optional/vscode.nix
 
 
   ];

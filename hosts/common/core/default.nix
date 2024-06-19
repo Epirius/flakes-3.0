@@ -8,9 +8,9 @@
   time.timeZone = "Europe/Oslo";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  
+
   nixpkgs.config.allowUnfree = true;
-  
+
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "nb_NO.UTF-8";
     LC_IDENTIFICATION = "nb_NO.UTF-8";
@@ -45,10 +45,10 @@
     rsync
     bat
     neofetch
-    vscode
     firefox
     ripgrep
     tldr
+    vscode
     wofi
     wireplumber # dont know if i need this, i added it when i ment to add pavucontrol
     pavucontrol
@@ -57,5 +57,5 @@
   services = {
     pcscd.enable = true;
   };
-  
+
 }
