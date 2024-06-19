@@ -23,6 +23,7 @@
     inherit (pkgs)
 
     # Packages that don't have costum configs go here
+    brightnessctl
     coreutils
     eza
     fd

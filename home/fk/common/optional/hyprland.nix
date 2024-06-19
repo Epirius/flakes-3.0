@@ -181,7 +181,7 @@ in
 
         "${mainMod}, Backslash, exec, kitty"
         "${mainMod}, B, exec, firefox"
-        "${mainMod}, N, exec, ~/.dotfiles/scripts/random-bg.sh"
+        # "${mainMod}, N, exec, ~/.dotfiles/scripts/random-bg.sh"
         "${mainMod} SHIFT, B, exec, google-chrome-stable"
         "${mainMod}, X, killactive, "
         "${mainMod} SHIFT, Q, exit, "
