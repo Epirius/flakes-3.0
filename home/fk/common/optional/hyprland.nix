@@ -245,7 +245,7 @@ in
         "${mainMod}, Backslash, exec, kitty"
         "${mainMod}, B, exec, firefox"
         # "${mainMod}, N, exec, ~/.dotfiles/scripts/random-bg.sh"
-        "${mainMod} SHIFT, B, exec, google-chrome-stable"
+        "${super}+shift, B, exec, chromium"
         "${mainMod}, X, killactive, "
         "${mainMod} SHIFT, Q, exit, "
         "${mainMod}, E, exec, dolphin"

@@ -19,6 +19,8 @@ in
     ./common/optional/hyprland.nix
     ./common/optional/waybar.nix
     ./common/optional/styling.nix
+    ./common/optional/firefox.nix
+    ./common/optional/chromium.nix
 
 
   ];
