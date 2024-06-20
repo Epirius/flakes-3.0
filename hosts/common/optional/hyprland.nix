@@ -18,6 +18,7 @@
     };
     systemPackages = [
       pkgs.networkmanagerapplet
+      pkgs.swww
     ];
     # systemPackages = [
     #   pkgs.waybar

@@ -53,6 +53,7 @@
       settings = {
         scrollback_lines = 5000;
         enable_audio_bell = false;
+        background_opacity = lib.mkForce "0.7";
       };
     };
     ssh = {

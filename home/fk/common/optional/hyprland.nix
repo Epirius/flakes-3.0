@@ -1,25 +1,13 @@
-{pkgs, lib, background-image, ...}:
+{pkgs, lib, configLib, background-image, ...}:
 let 
   inherit (pkgs) polkit_gnome callPackage;
   super = "SUPER";
   mainMod = "SUPER";
   laptopMonitor = "desc:Sharp Corporation 0x1547";
+  wallpaper = configLib.relativeToRoot "backgrounds/lofi_girl.gif";
 in
 {
-  home.packages = with pkgs; [
-    hyprpaper
-  ];
-
   services = {
-    hyprpaper = {
-      enable = true;
-      settings = {
-        preload = [ "${background-image}" ];
-        wallpaper = [ ",${background-image}" ];
-        splash = false;
-      };
-    };
-
     dunst.enable = true;
 
     hypridle = {
@@ -165,6 +153,7 @@ in
 
       exec-once = [
         "nm-applet --indicator & disown"
+        "swww-daemon && swww img ${wallpaper}"
       ];
       
 
