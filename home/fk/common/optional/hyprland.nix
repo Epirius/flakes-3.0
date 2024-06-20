@@ -4,7 +4,8 @@ let
   super = "SUPER";
   mainMod = "SUPER";
   laptopMonitor = "desc:Sharp Corporation 0x1547";
-  wallpaper = configLib.relativeToRoot "backgrounds/lofi_girl.gif";
+  wallpaper_gif = configLib.relativeToRoot "backgrounds/lofi_girl.gif";
+  wallpaper_png = configLib.relativeToRoot "backgrounds/lofi_girl.png";
 in
 {
   services = {
@@ -152,8 +153,8 @@ in
       };
 
       exec-once = [
+        "swww-daemon & swww img ${wallpaper_png} -t none && sleep 0.1 && swww img ${wallpaper_gif} -t none"
         "nm-applet --indicator & disown"
-        "swww-daemon && swww img ${wallpaper}"
       ];
       
 

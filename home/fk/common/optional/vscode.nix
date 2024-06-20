@@ -8,13 +8,15 @@
       dbaeumer.vscode-eslint
       bradlc.vscode-tailwindcss
       rust-lang.rust-analyzer
-      asvetliakov.vscode-neovim
+      # asvetliakov.vscode-neovim
+      vscodevim.vim
       tomoki1207.pdf
       bbenoist.nix
     ];
     userSettings = {
       "[nix]"."editor.tabSize" = 2;
       "workbench.sideBar.location" = "right";
+      "vim.disableExtension" = true;
       # https://github.com/danth/stylix/issues/155
     };
   };

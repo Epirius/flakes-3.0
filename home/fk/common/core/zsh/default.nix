@@ -22,6 +22,8 @@
       picker = "hyprpicker -a"; # TODO add program
       image = "feh"; # TODO add program
       "code ," = "code .";
+      "code ,." = "code .";
+      "code .," = "code .";
       switch = "sudo nixos-rebuild switch --flake ~/nixos/.#xps";
     };
 
